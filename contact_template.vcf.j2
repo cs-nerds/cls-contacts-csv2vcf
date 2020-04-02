@@ -1,0 +1,18 @@
+{# Create a VCARD for each Contact #}
+{% for contact in contacts %}
+BEGIN:VCARD
+VERSION:3.0
+FN:{{ prefix }} {{ given_name }} {{ additional_name }} {{ family_name }} {{ suffix }}
+N:{{ family_name }};{{ given_name }};{{ additional_name }} ;{{ prefix }} ;
+EMAIL;TYPE=INTERNET;TYPE=HOME:{{ home_email }}
+EMAIL;TYPE=INTERNET;TYPE=WORK:{{ work_email }}
+TEL;TYPE=CELL:{{ mobile_phone }}
+{% if work_phone %}
+TEL;TYPE=CELL:{{ work_phone }}
+{% endif %}
+item1.ORG:{{ organisation }}
+item1.X-ABLabel:
+item2.TITLE:{{ title }}
+item2.X-ABLabel:
+END:VCARD
+{% endfor %}
